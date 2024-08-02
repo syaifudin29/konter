@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('produk', function (Blueprint $table) {
             $table->id();
             $table->string('nama', length: 100);
-            $table->string('kategori');
-            $table->string('label');
-            $table->string('jenis');
+            $table->string('label_id');
             $table->enum('status', ['aktif', 'gangguan']);
             $table->integer('beli');
             $table->integer('jual');
-            $table->text('keterangan'); 
+            $table->text('keterangan')->nullable();
+            $table->enum('aktif', ['1','0']); 
             $table->timestamps();
         });
     }

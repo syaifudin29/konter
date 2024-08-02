@@ -16,12 +16,14 @@ class LabelSeeder extends Seeder
         LabelModel::create([
             'nama' => 'Jumbo',
             'keterangan' => 'Paket Jumbo',
-            'kategori_id' => 1
+            'jenis_id' => 1,
+            'aktif' => '1',
         ]);
         LabelModel::create([
             'nama' => 'Mini',
             'keterangan' => 'Paket Mini',
-            'kategori_id' => 2
+            'jenis_id' => 2,
+            'aktif' => '1',
         ]);
     }
 }

@@ -18,8 +18,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/assets/img/apple-icon.png') }}">
+  <link rel="icon" type="image/png" href="{{ asset('/assets/img/favicon.png') }}">
   <title>
     Material Dashboard 2 by Creative Tim
   </title>
@@ -41,6 +41,7 @@
  <link rel="stylesheet" href="https://demos.creative-tim.com/test/material-dashboard-pro/assets/css/material-dashboard.min.css" type="text/css">
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+  @yield('css')
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
 
@@ -49,7 +50,7 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
-        <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="{{ asset('/assets/img/logo-ct.png') }}" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
       </a>
     </div>
@@ -106,7 +107,7 @@
             <a class="dropdown-item border-radius-md" href="javascript:;">
               <div class="d-flex py-1">
               <div class="my-auto">
-                <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                <img src="{{ asset('/assets/img/team-2.jpg') }}" class="avatar avatar-sm  me-3 ">
               </div>
               <div class="d-flex flex-column justify-content-center">
                 <h6 class="text-sm font-weight-normal mb-1">
@@ -124,7 +125,7 @@
             <a class="dropdown-item border-radius-md" href="javascript:;">
               <div class="d-flex py-1">
               <div class="my-auto">
-                <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                <img src="{{ asset('/assets/img/small-logos/logo-spotify.svg') }}" class="avatar avatar-sm bg-gradient-dark  me-3 ">
               </div>
               <div class="d-flex flex-column justify-content-center">
                 <h6 class="text-sm font-weight-normal mb-1">
@@ -181,7 +182,7 @@
       </div>
       </nav>
     @yield('content')
-    <footer class="footer py-4  ">
+    <footer class="footer py-4" style="">
       <div class="container-fluid">
       <div class="row align-items-center justify-content-lg-between">
         <div class="col-lg-6 mb-lg-0 mb-4">
@@ -300,17 +301,19 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.all.min.js"></script>
 
   <!-- Github buttons -->
-  @yield('js')
+
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+  <script src="{{ asset('/assets/js/material-dashboard.min.js?v=3.1.0') }}"></script>
   <script src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/js/plugins/datatables.js" type="text/javascript"></script>
+  <script src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/js/material-dashboard.min.js?v=1.0.0" type="text/javascript"></script>
   <script type="text/javascript">
-    const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
-      searchable: false,
+    const dataTableBasic = new simpleDatatables.DataTable("table.display", {
+      searchable: true,
       fixedHeight: true
     });
   </script>
+  @yield('js')
 </body>
 
 </html>

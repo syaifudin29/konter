@@ -16,23 +16,21 @@ class produk extends Seeder
         //
         ProdukModel::create([
             'nama' => '4',
-            'kategori' => '1',
-            'label' => '1',
-            'jenis'=> '1',
+            'label_id' => 1,
             'status'=> 'aktif',
-            'jual' => '1234',
-            'beli' => '25423',
-            'keterangan' => 'oke'
+            'jual' => '1000',
+            'beli' => '2000',
+            'keterangan' => 'oke',
+            'aktif' => '1',
         ]);
         ProdukModel::create([
             'nama' => '2,5',
-            'kategori' => '2',
-            'label' => '2',
-            'jenis'=> '2',
+            'label_id' => 2,
             'status'=> 'gangguan',
-            'jual' => '1234',
-            'beli' => '25423',
-            'keterangan' => 'oke'
+            'jual' => '1000',
+            'beli' => '2000',
+            'keterangan' => 'oke',
+            'aktif' => '1',
         ]);
     }
 }

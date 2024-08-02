@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('jenis', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
+            $table->integer('kategori_id');
+            $table->enum('aktif', ['1','0']); 
             $table->timestamps();
         });
     }

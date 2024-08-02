@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('label', function (Blueprint $table) {
+        Schema::create('saldo', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->text('keterangan')->nullable();
-            $table->integer('jenis_id');
+            $table->text('nama')->unique;
+            $table->integer('saldo');
             $table->enum('aktif', ['1','0']); 
             $table->timestamps();
         });
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('label');
+        Schema::dropIfExists('saldo');
     }
 };

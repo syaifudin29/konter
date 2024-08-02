@@ -24,7 +24,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             produk::class,
             KategoriSeeder::class,
-            LabelSeeder::class
+            LabelSeeder::class,
+            TransaksiSeeder::class,
+            SaldoSeeder::class,
+            JenisSeeder::class,
+            PaymentSeeder::class
+            
         ]);
     }
 }

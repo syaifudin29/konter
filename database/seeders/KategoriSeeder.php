@@ -15,12 +15,14 @@ class KategoriSeeder extends Seeder
     {
         //
         KategoriModel::create([
-            'nama' => 'TRI',
+            'nama' => 'Kartu Perdana',
             'keterangan' => 'Kartu Perdana',
+            'aktif' => '1',
         ]);
         KategoriModel::create([
-            'nama' => 'XL',
-            'keterangan' => 'Kartu Perdana',
+            'nama' => 'Voucher',
+            'keterangan' => 'Voucher',
+            'aktif' => '1',
         ]);
     }
 }

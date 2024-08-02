@@ -14,12 +14,16 @@ class JenisSeeder extends Seeder
     public function run(): void
     {
         JenisModel::create([
-            'nama' => 'Vocher',
-            'keterangan' => 'Vocher',
+            'nama' => 'TRI',
+            'keterangan' => 'kartu',
+            'aktif' => '1',
+            'kategori_id' => '1',
         ]);
         JenisModel::create([
-            'nama' => 'Kartu Perdana',
+            'nama' => 'TELKOMSEL',
             'keterangan' => 'Kartu',
+            'aktif' => '1',
+            'kategori_id' => '1',
         ]);
     }
 }
