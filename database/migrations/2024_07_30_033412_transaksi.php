@@ -17,7 +17,9 @@ return new class extends Migration
             $table->text('nama_produk');
             $table->text('beli');
             $table->text('jual');
-            $table->text('payment');
+            $table->text('deskripsi')->nullable();
+            $table->integer('payment_id');
+            $table->enum('keterangan',['masuk','keluar']);
             $table->enum('lunas',['1','0']);
             $table->enum('aktif', ['1','0']); 
             $table->timestamps();

@@ -13,7 +13,7 @@ class ProdukController extends Controller
     //
     public function produk($id){
         
-        $produk = ProdukModel::select('*')->where('aktif', '1')->get();
+        $produk = ProdukModel::select('*')->where('aktif', '1')->orderBy('id', 'desc')->get();
         $kategori = KategoriModel::select('*')->where('aktif', '1')->get();
         $jenis = JenisModel::select('*')->where('aktif', '1')->get();
         $label = LabelModel::select('*')->where('aktif', '1')->get();
@@ -50,6 +50,7 @@ class ProdukController extends Controller
         'beli' => $req->beli,
         'jual' => $req->jual,
         'keterangan' => $req->keterangan,
+        
         ]);
         return redirect()->back();
     }

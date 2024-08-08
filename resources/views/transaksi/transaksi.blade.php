@@ -1,12 +1,38 @@
 @extends('template')
 @section('judul','Transaksi')
 @section('js')
-<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-    $(document).ready(function() {
-    $('#js-example-basic-single').select2();
+"use strict";
+// const nama = {{json_encode($produk_js)}}
+let namas = @json($produk_js);
+let json = JSON.parse(namas);
+
+
+$(document).ready(function domReady() {
+  
+  $('.js-example-basic-single').select2();
 });
+
+
+
+$('#nama').change(function() { 
+  $('#jual').val(39000);
+  const rupiah = (number)=>{
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR"
+    }).format(number);
+  }
+
+  json.forEach(element => {
+    if (element.id == $('#nama').val()) {
+      $('#jual').val(rupiah(element.jual));
+    }
+  });
+});
+
 </script>
 @endsection
 @section('css')
@@ -19,10 +45,11 @@
         <div class="card my-4">
           <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <button data-bs-toggle="modal" data-bs-target="#tambahData" class="btn bg-gradient-secondary" style="float: right; margin-right: 10px; margin-top: -5px;"><i class="fa-solid fa-plus"></i> Data</button>
+                <a href="{{ route('transaksi_proses') }}" class="btn bg-gradient-secondary" style="float: right; margin-right: 10px; margin-top: -5px;"><i class="fa-solid fa-plus"></i> Data</a>
               <h6 class="text-white text-capitalize ps-3" >Transaksi</h6>
             </div>
           </div>
+        
           <div class="card-body px-0 pb-2">
             <div class="table-responsive p-0">
               <table class="table align-items-center mb-0 table-flush display" id="datatable-basic">
@@ -42,8 +69,6 @@
                         $no=1;
                     @endphp
                    @foreach ($transaksi as $item)
-                       
-                 
                         <tr>
                         <td>
                             <div class="d-flex font-weight-bold ">
@@ -69,7 +94,7 @@
                         </td>
                         <td>
                             <div class="d-flex font-weight-bold ">
-                              {{ $item->payment }}
+                              {{ $item->payment->nama }}
                             </div>
                         </td>
                         <td>
@@ -85,7 +110,7 @@
                               <div class="text-center">
                               {{-- <a href="" data-bs-toggle="modal" data-bs-target="#editProduk{{$item->id}}" style="margin: 10px;"><i class="fa-solid fa-pen-to-square"></i></a>
                               | --}}
-                              <a href="{{ route('produk_delete', ['id'=>$item->id]) }}" onclick="if (confirm('Delete selected item?')){return true;}else{event.stopPropagation(); event.preventDefault();};" title="Link Title" style="margin: 10px;"><i class="fa-solid fa-trash"></i></a>
+                              <a href="{{ route('transaksi_delete', ['id'=>$item->id]) }}" onclick="if (confirm('Delete selected item?')){return true;}else{event.stopPropagation(); event.preventDefault();};" title="Link Title" style="margin: 10px;"><i class="fa-solid fa-trash"></i></a>
                               </div>
                             </td>
                         </tr>
@@ -121,40 +146,55 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group input-group-static mb-4">
-                      <label class="form-label">Nama</label>
-                      <select name="nama_produk" style="width: 100%;" class="form-control" id="js-example-basic-single" name="state">
+                      <label for="exampleFormControlSelect1" class="ms-0">Nama</label>
+                      <select class="js-example-basic-single" id="nama" name="kode_produk" class="js-example-basic-single" name="state" required>
+                        {{-- <option disabled selected hidden >Pilih</option> --}}
                         @foreach ($produk as $item)
-                            <option value="AL">{{$item->label->jenis->kategori->nama." ".$item->label->jenis->nama." ".$item->nama}}</option>
+                            <option value="{{$item->id}}">{{$item->label->jenis->kategori->nama." ".$item->label->jenis->nama." ".$item->nama}}</option>
                         @endforeach
                       </select>
                     </div>
                   </div>
+                    <hr>
                   <div class="col-md-12">
-                    <div class="input-group input-group-static mb-4">
-                      <label for="exampleFormControlSelect1" class="ms-0">Status</label>
-                      <select name="status" class="form-control" id="exampleFormControlSelect1" required>
-                        <option selected value="aktif">Aktif</option>
-                        <option value="gangguan">Gangguan</option>
-                      </select>
+                    <div class="form-group input-group-outline">
+                      <label class="form-label">Harga</label>
+                      <input type="text" name="jual" id="jual" class="form-control" disabled>
                     </div>
                   </div>
-                  <div class="col-md-12">
-                    <div class="input-group input-group-outline my-3">
-                      <label class="form-label">Harga Beli</label>
-                      <input type="number" name="beli" class="form-control" required>
-                    </div>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;">
+                  <div class="form-group input-group-static mb-4">
+                    <label for="exampleFormControlSelect1" class="ms-0">Metode</label>
+                    <select class="form-control" name="lunas">
+                      @foreach ($payment as $item_p)
+                        <option value="{{$item_p->id}}">{{$item_p->nama}}</option>
+                      @endforeach
+                    </select>
                   </div>
-                  <div class="col-md-12">
-                    <div class="input-group input-group-outline my-3">
-                      <label class="form-label">Harga Jual</label>
-                      <input type="number" name="jual" class="form-control" required>
-                    </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group input-group-static mb-4">
+                    <label for="exampleFormControlSelect1" class="ms-0">Keterangan</label>
+                    <select class="form-control" name="lunas">
+                      <option value="keluar" selected>Keluar</option>
+                      <option value="Masuk">Masuk</option>
+                    </select>
                   </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label class="form-label">Keterangan</label>
-                      <textarea  name="keterangan" class="form-control" rows="5" placeholder=" ....." spellcheck="false"></textarea>
-                    </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group input-group-static mb-4">
+                    <label for="exampleFormControlSelect1" class="ms-0">Pembayaran</label>
+                    <select class="form-control" name="lunas">
+                      <option value="1" selected>Lunas</option>
+                      <option value="0">Hutang</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group input-group-static mb-4">
+                    <label for="exampleFormControlSelect1" class="ms-0">Deskripsi</label>
+                    <textarea name="deskripsi" id="" cols="30" rows="10"></textarea>
                   </div>
                 </div>
              

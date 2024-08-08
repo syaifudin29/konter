@@ -14,7 +14,7 @@ class AlatController extends Controller
     public function alat(){
         
         $kategori = KategoriModel::select('*')->where('aktif', '1')->get();
-        $jenis = JenisModel::select('*')->where('aktif', '1')->get();
+        $jenis = JenisModel::select('*')->where('aktif', '1')->orderBy('kategori_id', 'asc')->get();
         $label = LabelModel::select('*')->where('aktif', '1')->get();
         $data = ['kategori' => $kategori, 'label' => $label, 'jenis' => $jenis];
         return view('alat/alat', $data);

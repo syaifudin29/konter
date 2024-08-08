@@ -50,7 +50,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="d-flex px-2 py-1">
+                        <div class="d-flex px-2 py-1 text-capitalize">
                          {{$item->nama}}
                         </div>
                     </td>
@@ -85,7 +85,7 @@
                                   <div class="col-md-12">
                                     <div class="form-group">
                                       <label class="form-label">Keterangan</label>
-                                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false" required>{{$item->keterangan}}</textarea>
+                                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false">{{$item->keterangan}}</textarea>
                                     </div>
                                   </div>
                                 </div> 
@@ -137,7 +137,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="d-flex px-2 py-1">
+                        <div class="d-flex px-2 py-1 text-capitalize">
                         {{$item->nama}}
                         </div>
                     </td>
@@ -197,7 +197,7 @@
                                   <div class="col-md-12">
                                     <div class="form-group">
                                       <label class="form-label">Keterangan</label>
-                                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false" required>{{$item->keterangan}}</textarea>
+                                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false" >{{$item->keterangan}}</textarea>
                                     </div>
                                   </div>
                                 </div> 
@@ -249,13 +249,15 @@
                         </div>
                     </td>
                     <td>
-                        <div class="d-flex px-2 py-1">
+                        <div class="d-flex px-2 py-1 text-capitalize">
                          {{$item->nama}}
                         </div>
                     </td>
                     <td>
-                      <div class="d-flex px-2 py-1">
-                       {{$item->jenis->nama}}
+                      <div class="text-capitalize">
+                        <p class="text-xs font-weight-bold mb-0">{{$item->jenis->nama}}</p>
+                        <p class="text-xs text-secondary mb-0">{{$item->jenis->kategori->nama}}</p>
+                       
                       </div>
                   </td>
                       <td class="align-middle   ">
@@ -289,7 +291,7 @@
                                   <div class="col-md-12">
                                     <div class="input-group input-group-static mb-4">
                                       <label for="exampleFormControlSelect1" class="ms-0">Jenis</label>
-                                      <select name="jenis_id" class="form-control" id="exampleFormControlSelect1">
+                                      <select name="jenis_id" class="form-control text-capitalize" id="exampleFormControlSelect1">
                                         @foreach ($jenis as $jen)
                                         @if ($jen->id == $item->jenis_id)
                                             @php
@@ -300,7 +302,7 @@
                                             $select = "";
                                           @endphp
                                         @endif
-                                        <option {{$select}} value="{{$jen->id}}">{{$jen->nama}}</option>
+                                        <option class="text-capitalize" {{$select}} value="{{$jen->id}}">{{$jen->kategori->nama." - ".$jen->nama}}</option>
                                         @endforeach
                                         
                                       </select>
@@ -309,7 +311,7 @@
                                   <div class="col-md-12">
                                     <div class="form-group">
                                       <label class="form-label">Keterangan</label>
-                                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false" required>{{$item->keterangan}}</textarea>
+                                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false" >{{$item->keterangan}}</textarea>
                                     </div>
                                   </div>
                                 </div> 
@@ -356,7 +358,7 @@
                   </div>
                   <div class="col-md-12">
                     <div class="input-group input-group-dynamic">
-                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false" required></textarea>
+                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false" ></textarea>
                     </div>
                   </div>
                 </div> 
@@ -403,7 +405,7 @@
                   </div>
                   <div class="col-md-12">
                     <div class="input-group input-group-dynamic">
-                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false" required></textarea>
+                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false" ></textarea>
                     </div>
                   </div>
                 </div> 
@@ -440,9 +442,9 @@
                   <div class="col-md-12">
                     <div class="input-group input-group-static mb-4">
                       <label for="exampleFormControlSelect1" class="ms-0">Jenis</label>
-                      <select name="jenis_id" class="form-control" id="exampleFormControlSelect1">
+                      <select name="jenis_id" class="form-control text-capitalize" id="exampleFormControlSelect1" >
                         @foreach ($jenis as $jen)
-                        <option value="{{$jen->id}}">{{$jen->nama}}</option>
+                        <option class="text-capitalize" value="{{$jen->id}}">{{$jen->kategori->nama." - ".$jen->nama}}</option>
                         @endforeach
                         
                       </select>
@@ -450,7 +452,7 @@
                   </div>
                   <div class="col-md-12">
                     <div class="input-group input-group-dynamic">
-                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false" required></textarea>
+                      <textarea  name="keterangan" class="form-control" rows="5" placeholder="keterangan" spellcheck="false" ></textarea>
                     </div>
                   </div>
                 </div> 

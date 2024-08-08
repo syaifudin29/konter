@@ -8,7 +8,7 @@
           <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                 <button data-bs-toggle="modal" data-bs-target="#tambahData" class="btn bg-gradient-secondary" style="float: right; margin-right: 10px; margin-top: -5px;"><i class="fa-solid fa-plus"></i> Data</button>
-              <h6 class="text-white text-capitalize ps-3" >Produk {{$jns->nama}}</h6>
+              <h6 class="text-white text-capitalize ps-3" >Produk {{$jns->kategori->nama}} {{$jns->nama}}</h6>
             </div>
           </div>
           <div class="card-body px-0 pb-2">
@@ -31,13 +31,13 @@
                         @if ($lb->id == $item->label_id)
                         <tr>
                           <td>
-                              <div class="d-flex font-weight-bold ">
-                                {{ $item->label->jenis->kategori->nama." ".$item->nama }} GB
+                              <div class="d-flex font-weight-bold text-uppercase">
+                                {{ $item->label->jenis->kategori->nama." ".$item->nama }}
                               </div>
                           </td>
                           <td>
-                            <p class=" font-weight-bold mb-0">{{ $item->label->jenis->nama }}</p>
-                            <p class=" text-secondary mb-0">{{ $item->label->nama }}</p>
+                            <p class=" font-weight-bold mb-0 text-capitalize">{{ $item->label->jenis->nama }}</p>
+                            <p class=" text-secondary mb-0 text-capitalize">{{ $item->label->nama }}</p>
                           </td>
                           <td class="align-middle text-center text-sm">
                             @if ($item->status == "gangguan")
@@ -192,7 +192,6 @@
                         @foreach ($lbl as $lbl)
                         <option value="{{$lbl->id}}">{{$lbl->nama}}</option>
                         @endforeach
-                        
                       </select>
                     </div>
                   </div>

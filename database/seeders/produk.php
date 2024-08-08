@@ -15,7 +15,7 @@ class produk extends Seeder
     {
         //
         ProdukModel::create([
-            'nama' => '4',
+            'nama' => '4 GB / 10 H',
             'label_id' => 1,
             'status'=> 'aktif',
             'jual' => '1000',
@@ -24,7 +24,7 @@ class produk extends Seeder
             'aktif' => '1',
         ]);
         ProdukModel::create([
-            'nama' => '2,5',
+            'nama' => '2,5 GB / 10 H',
             'label_id' => 2,
             'status'=> 'gangguan',
             'jual' => '1000',

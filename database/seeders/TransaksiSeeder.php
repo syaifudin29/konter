@@ -18,7 +18,9 @@ class TransaksiSeeder extends Seeder
             'nama_produk' => 'Voucher Tri 2,5',
             'beli' => 500,
             'jual' => 1000,
-            'payment' => 'DANA',
+            'payment_id' => 1,
+            'deskripsi' => '',
+            'keterangan' =>'keluar',
             'lunas' => 1,
             'aktif' => '1',
         ]);
@@ -27,7 +29,9 @@ class TransaksiSeeder extends Seeder
             'nama_produk' => 'Voucher Tsel 2,5',
             'beli' => 500,
             'jual' => 1000,
-            'payment' => 'BCA',
+            'payment_id' => 1,
+            'deskripsi' => '',
+            'keterangan' =>'keluar',
             'lunas' => 1,
             'aktif' => '1',
         ]);

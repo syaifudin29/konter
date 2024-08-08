@@ -6,7 +6,13 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Seeders\produk;
 use Illuminate\Database\Seeder;
+use Database\Seeders\JenisSeeder;
+use Database\Seeders\LabelSeeder;
+use Database\Seeders\SaldoSeeder;
+use Database\Seeders\PaymentSeeder;
 use Database\Seeders\KategoriSeeder;
+use Illuminate\Support\Facades\Hash;
+use Database\Seeders\TransaksiSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,18 +24,19 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'rosyad',
+            'email' => 'rosyad@gmail.com',
+            'password' => Hash::make('rosyad')
         ]);
-        $this->call([
-            produk::class,
-            KategoriSeeder::class,
-            LabelSeeder::class,
-            TransaksiSeeder::class,
-            SaldoSeeder::class,
-            JenisSeeder::class,
-            PaymentSeeder::class
+        // $this->call([
+        //     produk::class,
+        //     KategoriSeeder::class,
+        //     LabelSeeder::class,
+        //     TransaksiSeeder::class,
+        //     SaldoSeeder::class,
+        //     JenisSeeder::class,
+        //     PaymentSeeder::class
             
-        ]);
+        // ]);
     }
 }

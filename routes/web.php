@@ -10,9 +10,12 @@ use App\Http\Controllers\TransaksiController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/login', [DashboardController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login-cek', [DashboardController::class, 'loginCek'])->name('login_cek');
 
+Route::middleware('auth')->group(function () {
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
+Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 
 // produk
 Route::get('/produk/{id}', [ProdukController::class, 'produk'])->name('produk');
@@ -47,3 +50,9 @@ Route::post('/saldo/saldo-simpan/', [SaldoController::class, 'simpanSaldo'])->na
 
 // transaksi
 Route::get('/transaksi', [TransaksiController::class, 'transaksi'])->name('transaksi');
+Route::get('/transaksi/proses', [TransaksiController::class, 'proses'])->name('transaksi_proses');
+Route::post('/transaksi/simpan', [TransaksiController::class, 'simpan'])->name('transaksi_simpan');
+Route::get('/transaksi/transaksi-delete/{id}', [TransaksiController::class, 'deleteTransaksi'])->name('transaksi_delete');
+
+   
+});

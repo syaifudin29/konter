@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SaldoModel extends Model
 {
@@ -11,4 +12,9 @@ class SaldoModel extends Model
     protected $table = 'saldo';
     protected $primaryKey = 'id';
     protected $fillable = ['nama','saldo','aktif'];
+    
+    public function payment(): HasMany
+    {
+        return $this->hasMany(TransaksiModel::class, 'payment_id');
+    }
 }
